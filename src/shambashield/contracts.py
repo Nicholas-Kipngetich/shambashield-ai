@@ -129,3 +129,26 @@ class CropRiskAssessment(BaseModel):
     impact_explanation: str
     uncertainty: list[str]
     stage_sensitivity: str
+
+
+CostTier = Literal["free", "low", "medium"]
+Urgency = Literal["now", "this_week", "monitor"]
+
+
+class RecommendedAction(BaseModel):
+    """One curated practice. `action_id` must exist in data/actions.yaml."""
+
+    action_id: str
+    title: str
+    why: str
+    when: str
+    cost_tier: CostTier
+    urgency: Urgency
+
+
+class ActionPlan(BaseModel):
+    """Curated, catalog-bound plan. 3-5 prioritised actions plus deferrals."""
+
+    actions: list[RecommendedAction] = Field(max_length=5)
+    deferred: list[str]
+    assumptions: list[str]

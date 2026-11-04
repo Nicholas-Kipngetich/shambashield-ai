@@ -15,6 +15,7 @@ from shambashield.contracts import WeatherFindings
 from shambashield.demo import load_demo_snapshot
 from shambashield.geo import UnknownCountyError
 from shambashield.logging_setup import configure_logging, get_logger, new_request_id
+from shambashield.tools.action_planner import plan_actions
 from shambashield.tools.crop_risk import assess_crop_risk
 from shambashield.tools.hazard_rules import detect_hazards, hazard_kind_label
 from shambashield.tools.open_meteo import (
@@ -111,6 +112,19 @@ def main(argv: list[str] | None = None) -> int:
         print("\nUncertainty:")
         for note in assessment.uncertainty:
             print(f"  - {note}")
+
+    plan = plan_actions(findings, assessment)
+    print(f"\nRecommended actions (curated catalog, top {len(plan.actions)}):")
+    for i, action in enumerate(plan.actions, start=1):
+        print(f"  {i}. [{action.urgency.upper():<9}] {action.title} ({action.cost_tier})")
+        print(f"     Why: {action.why}")
+        print(f"     When: {action.when}")
+    if plan.deferred:
+        print("\nConsidered but not prioritised:")
+        for title in plan.deferred:
+            print(f"  - {title}")
+    for assumption in plan.assumptions:
+        print(f"Assumption: {assumption}")
 
     if snapshot.source == "demo":
         print("\nNOTE: LABELLED DEMONSTRATION DATA, not a live forecast.")

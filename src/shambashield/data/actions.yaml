@@ -1,0 +1,225 @@
+# ShambaShield AI — curated action catalog (v0.1.0)
+#
+# The planner agent may ONLY pick actions from this file. Every `id` is
+# validated against the catalog, so the LLM can never invent actions such as
+# "buy a diesel generator" or "hire a drone" without a curated basis.
+#
+# - Swahili titles are DRAFT translations and must be reviewed by a Kenyan
+#   Swahili speaker before any real pilot; local languages vary by county.
+# - `stages: [any]` and `crops: [any]` are wildcards (all stages / all crops).
+# - urgency: now | this_week | monitor;  cost_tier: free | low | medium.
+# - All practices are general smallholder guidance; each farmer must verify
+#   locally. No invented costs; keep titles concrete and affordable.
+
+version: "0.1.0"
+note: "Curated practices for the demo; pending local agronomist review."
+
+actions:
+  - id: wait_for_moist_soil
+    hazards: [drought]
+    crops: [any]
+    stages: [planting]
+    title_en: "Wait for moist soil before sowing"
+    title_sw: "Subiri udongo ulainike kabla ya kupanda"
+    why: "Seed sown in dry soil can fail to germinate; waiting protects the seed and fertiliser investment."
+    when: "Now — check that rain has wet the top of the soil over two consecutive days before sowing."
+    cost_tier: free
+    urgency: now
+
+  - id: top_up_gaps_after_check
+    hazards: [drought, excess_rain]
+    crops: [any]
+    stages: [emergence, vegetative]
+    title_en: "Check germination and top up gaps with fresh seed"
+    title_sw: "Kagua miche ikimea, jaza pengo kwa mbegu mpya"
+    why: "Dry or waterlogged seed spots create gaps; filling them early protects the final stand."
+    when: "This week, once the stand is visible."
+    cost_tier: low
+    urgency: this_week
+
+  - id: drought_tolerant_seed
+    hazards: [drought]
+    crops: [maize, beans]
+    stages: [land_preparation, planting]
+    title_en: "Choose drought-tolerant seed varieties for this season"
+    title_sw: "Chagua mbegu zinavumilia ukame msimu huu"
+    why: "Certified drought-tolerant varieties hold yield better under a long dry spell."
+    when: "Before buying seed for this planting round."
+    cost_tier: low
+    urgency: now
+
+  - id: mulch_between_rows
+    hazards: [drought, heat]
+    crops: [any]
+    stages: [emergence, vegetative, flowering]
+    title_en: "Spread crop residue or dry grass between rows as mulch"
+    title_sw: "Weka matandalo kati ya mistari"
+    why: "Mulch reduces evaporation from the soil surface and keeps roots cooler."
+    when: "This week, before the dry spell peaks."
+    cost_tier: free
+    urgency: this_week
+
+  - id: hand_water_seedlings
+    hazards: [drought]
+    crops: [any]
+    stages: [planting, emergence]
+    title_en: "Hand-water young plants in the morning or evening"
+    title_sw: "Mwagilia miche asubuhi au jioni"
+    why: "Young plants have shallow roots; a few litres at the base early or late loses far less to evaporation."
+    when: "Now — mornings or evenings only, never midday."
+    cost_tier: low
+    urgency: now
+
+  - id: irrigate_cooldown
+    hazards: [heat]
+    crops: [any]
+    stages: [flowering, grain_filling]
+    title_en: "If water is available, irrigate to cool the crop during the hottest days"
+    title_sw: "Ikiwa maji yako, mwagilia kupunguza joto kwenye siku za kali"
+    why: "Light irrigation at flowering reduces heat stress when the crop is most sensitive."
+    when: "Now, targeting early morning applications."
+    cost_tier: medium
+    urgency: now
+
+  - id: shade_seedlings
+    hazards: [heat]
+    crops: [any]
+    stages: [emergence, planting]
+    title_en: "Give young plants light shade with grass or palm fronds"
+    title_sw: "Tengeneza kivuli kwa miche kwa kutumia nyasi"
+    why: "Shade lowers leaf temperature for seedlings during the hottest hours."
+    when: "Now, while the heat spell lasts."
+    cost_tier: free
+    urgency: now
+
+  - id: avoid_midday_spraying
+    hazards: [heat, wind]
+    crops: [any]
+    stages: [any]
+    title_en: "Spray in the early morning or evening, never in strong wind or midday heat"
+    title_sw: "Puliza asubuhi mapema au jioni, wala wakati wa upepo mkali"
+    why: "Heat and wind increase spray drift and evaporation, making treatments ineffective."
+    when: "Before your next spray round."
+    cost_tier: free
+    urgency: monitor
+
+  - id: open_drainage_channels
+    hazards: [excess_rain]
+    crops: [any]
+    stages: [emergence, vegetative, flowering, grain_filling, maturity]
+    title_en: "Open or clear drainage channels along the field edge"
+    title_sw: "Chimba au fanyua mifereji ya maji pembezoni mwa shamba"
+    why: "Standing water suffocates roots within days; channels move it off the field."
+    when: "This week, before the next heavy rain."
+    cost_tier: free
+    urgency: this_week
+
+  - id: ridge_potato_beds
+    hazards: [excess_rain]
+    crops: [potatoes]
+    stages: [flowering, grain_filling, maturity]
+    title_en: "Ridge up soil around potato plants so tubers sit above wet soil"
+    title_sw: "Tengeneza vilunga kwa viazi dziini ya mvua nyingi"
+    why: "Ridges keep forming tubers above saturation and reduce rot losses."
+    when: "This week, before the rain peaks."
+    cost_tier: free
+    urgency: this_week
+
+  - id: delay_fieldwork_until_drained
+    hazards: [excess_rain]
+    crops: [any]
+    stages: [any]
+    title_en: "Stay off the field until the soil drains to avoid compaction"
+    title_sw: "Usifanye kazi shambani hadi udongo kavu"
+    why: "Working wet soil compacts it, damaging roots for the rest of the season."
+    when: "Monitor daily until the topsoil is firm underfoot."
+    cost_tier: free
+    urgency: monitor
+
+  - id: harvest_ripe_beyond_rain
+    hazards: [excess_rain, wind]
+    crops: [any]
+    stages: [maturity, harvest]
+    title_en: "Harvest what is already ripe before the heavy rain or wind arrives"
+    title_sw: "Vuna mazao yaliyoiva kabla ya mvua au upepo mkubwa"
+    why: "Ripe grain losses spike after storms; get it off the field first."
+    when: "Now, in the next dry window."
+    cost_tier: free
+    urgency: now
+
+  - id: dry_grain_on_tarpaulin
+    hazards: [excess_rain]
+    crops: [any]
+    stages: [harvest]
+    title_en: "Dry harvested grain on a clean tarpaulin and cover it during showers"
+    title_sw: "Kavisha nafaka kwenye mwanana safi na uifunike mvua zikinyesha"
+    why: "Proper drying prevents aflatoxin and storage losses after wet harvests."
+    when: "Throughout the drying period."
+    cost_tier: low
+    urgency: this_week
+
+  - id: stake_tall_crops
+    hazards: [wind]
+    crops: [beans, potatoes]
+    stages: [vegetative, flowering, grain_filling]
+    title_en: "Support or tie tall plants to stakes before strong winds"
+    title_sw: "Wega viti vya kunyegaa mimea iliyo mrefu"
+    why: "Staking prevents lodging that would flatten the canopy right before harvest."
+    when: "This week, before the windy days."
+    cost_tier: free
+    urgency: this_week
+
+  - id: wall_check_after_wind
+    hazards: [wind]
+    crops: [maize]
+    stages: [maturity, harvest]
+    title_en: "Check flattened maize stands and lift or harvest them promptly"
+    title_sw: "Kagua mahindi yaliyoanguka na yavune au yanyanyuliwe haraka"
+    why: "Lodged maize rots quickly in contact with wet ground."
+    when: "Within days of the wind event."
+    cost_tier: free
+    urgency: now
+
+  - id: verify_field_conditions
+    hazards: [data_gap]
+    crops: [any]
+    stages: [any]
+    title_en: "Walk the field to check soil moisture and crop condition yourself"
+    title_sw: "Tembea shambani uangalie hali ya udongo na mimea"
+    why: "With limited forecast data, your own observation is the best check on the conditions."
+    when: "Today, before making any application decisions."
+    cost_tier: free
+    urgency: now
+
+  - id: listen_kmd_forecast
+    hazards: [data_gap]
+    crops: [any]
+    stages: [any]
+    title_en: "Listen for Kenya Meteorological Department updates on radio or SMS"
+    title_sw: "Sikiliza utabiri wa KMD kwa redio au simu"
+    why: "Official short-range forecasts fill information gaps between model updates."
+    when: "Each morning this week."
+    cost_tier: free
+    urgency: monitor
+
+  - id: harvest_rainwater_storage
+    hazards: [excess_rain]
+    crops: [any]
+    stages: [any]
+    title_en: "Redirect roof or surface runoff into storage for later irrigation"
+    title_sw: "Hifadhi maji ya mvua kwa matumizi ya baadaye"
+    why: "A storm is also a water bank; storing runoff smooths out the next dry spell."
+    when: "Before the next forecast storm, if containers are available."
+    cost_tier: medium
+    urgency: this_week
+
+  - id: mounding_sweet_potato_roots
+    hazards: [excess_rain]
+    crops: [other]
+    stages: [vegetative, flowering, grain_filling]
+    title_en: "Mound soil around roots of other crops you grow in wet spots"
+    title_sw: "Panda udongo kwenye mizizi ya mazao mengine katika maeneo yenye maji"
+    why: "A small mound lifts the root zone out of saturated soil."
+    when: "This week, focusing on the wettest spots first."
+    cost_tier: free
+    urgency: this_week
