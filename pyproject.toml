@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shambashield-ai"
+version = "0.1.0"
+description = "Multi-agent climate resilience assistant for smallholder farmers in Kenya"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "ShambaShield AI" }]
+keywords = ["strands", "agents", "aws", "bedrock", "climate", "agriculture", "kenya"]
+dependencies = [
+    "strands-agents>=1.63,<2",
+    "boto3>=1.35,<2",
+    "pydantic>=2.8,<3",
+    "pydantic-settings>=2.4,<3",
+    "httpx>=0.27,<1",
+    "PyYAML>=6,<7",
+    "tenacity>=9,<10",
+    "streamlit>=1.40,<2",
+    "plotly>=5.24,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+    "respx>=0.21,<1",
+    "ruff>=0.8,<1",
+]
+
+[project.scripts]
+shambashield-check = "shambashield.bedrock_check:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]
+markers = [
+    "live: requires AWS credentials and network access",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["docs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
