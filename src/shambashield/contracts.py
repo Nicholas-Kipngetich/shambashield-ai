@@ -11,7 +11,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 RiskLevel = Literal["low", "moderate", "high", "unknown"]
 Language = Literal["en", "sw"]
@@ -152,3 +152,21 @@ class ActionPlan(BaseModel):
     actions: list[RecommendedAction] = Field(max_length=5)
     deferred: list[str]
     assumptions: list[str]
+
+
+class FarmerMessage(BaseModel):
+    """The farmer-facing summary. `body` is hard-capped at 120 words."""
+
+    language: Language
+    headline: str
+    body: str
+    action_sentence: str
+    uncertainty_note: str
+
+    @field_validator("body")
+    @classmethod
+    def _body_at_most_120_words(cls, value: str) -> str:
+        words = value.split()
+        if len(words) > 120:
+            raise ValueError(f"body must be at most 120 words, got {len(words)}")
+        return value

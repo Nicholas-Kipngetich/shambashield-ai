@@ -17,6 +17,7 @@ from shambashield.geo import UnknownCountyError
 from shambashield.logging_setup import configure_logging, get_logger, new_request_id
 from shambashield.tools.action_planner import plan_actions
 from shambashield.tools.crop_risk import assess_crop_risk
+from shambashield.tools.farmers_comms import build_farmer_message
 from shambashield.tools.hazard_rules import detect_hazards, hazard_kind_label
 from shambashield.tools.open_meteo import (
     ForecastAPIError,
@@ -47,6 +48,9 @@ def build_parser() -> argparse.ArgumentParser:
         "grain_filling | maturity | harvest",
     )
     parser.add_argument("--demo", help="use a labelled demo snapshot instead of live API")
+    parser.add_argument(
+        "--language", default="en", choices=["en", "sw"], help="farmer message language"
+    )
     parser.add_argument("--verbose", action="store_true")
     return parser
 
@@ -125,6 +129,13 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  - {title}")
     for assumption in plan.assumptions:
         print(f"Assumption: {assumption}")
+
+    message = build_farmer_message(findings, assessment, plan, language=args.language)
+    print(f"\nFarmer message ({message.language}):")
+    print(f"  Headline: {message.headline}")
+    print(f"  Body: {message.body}")
+    print(f"  Actions: {message.action_sentence}")
+    print(f"  Note: {message.uncertainty_note}")
 
     if snapshot.source == "demo":
         print("\nNOTE: LABELLED DEMONSTRATION DATA, not a live forecast.")

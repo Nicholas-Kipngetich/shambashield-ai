@@ -1,0 +1,58 @@
+# ShambaShield AI — farmer messaging phrasebook (v0.1.0)
+#
+# Deterministic templates used by the Farmer Communication stage. Placeholders
+# are filled ONLY from measured data (hazard metrics, county/crop/stage labels,
+# curated action titles) — never from free text. Numbers shown to the farmer
+# therefore always originate in the forecast snapshot or hazard engine.
+#
+# Swahili texts are DRAFT translations for the demo; a Kenyan Swahili speaker
+# must review them before any real pilot (and local languages vary by county).
+
+version: "0.1.0"
+note: "Draft Swahili pending native-speaker review."
+
+en:
+  headlines:
+    high: "High risk for your {crop} this week ({place})"
+    moderate: "Moderate risk for your {crop} this week ({place})"
+    low: "No major weather risk flagged for your {crop} ({place})"
+    unknown: "Weather data is limited for your area ({place})"
+  lead: "Outlook for {place}: {crop} at {stage}."
+  hazard_lines:
+    drought: "Water deficit is about {deficit_mm:+.1f} mm over the coming week."
+    drought_dry: "Few rainy days are expected, so soil moisture will keep dropping."
+    excess_rain: "Heavy rain is possible: about {max_daily_mm:.0f} mm in a single day."
+    heat: "Daytime heat may reach about {peak_tmax_c:.0f} °C."
+    wind: "Strong winds of about {peak_wind_kmh:.0f} km/h are possible."
+    data_gap: "The forecast is partly incomplete, so treat this outlook as a guide only."
+  act_lead: "What you can do this week:"
+  act_item: "{title}"
+  act_join: "; "
+  act_end: "."
+  uncertainty_lead: "Please note: "
+  uncertainty_join: " "
+  demo_note: "This summary uses demonstration data, not a live forecast."
+  closing: "Advice comes from weather model data and curated local practices; check with your local agricultural officer."
+
+sw:
+  headlines:
+    high: "Hatari kubwa kwa {crop} wako wiki hii ({place})"
+    moderate: "Hatari ya wastani kwa {crop} wako wiki hii ({place})"
+    low: "Hakuna hatari kubwa ya hali ya hewa kwa {crop} wako ({place})"
+    unknown: "Taarifa za hali ya hewa ni chache kwa eneo lako ({place})"
+  lead: "Masilahi kwa shamba la {place}: {crop} katika hatua ya {stage}."
+  hazard_lines:
+    drought: "Upungufu wa maji ni takriban {deficit_mm:+.1f} mm wiki ijayo."
+    drought_dry: "Siku chache za mvua zinatarajiwa, hivyo unyevu wa udongo utaendelea kupungua."
+    excess_rain: "Mvua kali inawezekana: takriban {max_daily_mm:.0f} mm katika siku moja."
+    heat: "Joto la mchana linaweza kufikia takriban {peak_tmax_c:.0f} °C."
+    wind: "Upepo mkali wa takriban {peak_wind_kmh:.0f} km/h unawezekana."
+    data_gap: "Utabiri haujakamilika, hivyo tumia taarifa hii kama mwongozo tu."
+  act_lead: "Unachoweza kufanya wiki hii:"
+  act_item: "{title}"
+  act_join: "; "
+  act_end: "."
+  uncertainty_lead: "Tafadhali kumbuka: "
+  uncertainty_join: " "
+  demo_note: "Muhtasari huu unatumia data ya maonyesho, sio utabiri wa moja kwa moja."
+  closing: "Ushauri unatokana na data ya hali ya hewa na mazoezi yaliyochaguliwa; thibitisha na afisa wa kilimo wa eneo lako."

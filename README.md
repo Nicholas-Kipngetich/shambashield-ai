@@ -54,7 +54,8 @@ Currently under development as part of the AWS Building AI Agents with Strands S
 - **Phase 3 in progress** — Open-Meteo integration live: 7-day normalised forecast, 47-county gazetteer, geocoding fallback, deterministic hazard rules (drought / excess rain / heat / wind / data gaps), labelled demo mode
 - **Phase 4 in progress** — deterministic Crop Risk engine: curated crop/stage sensitivity table (maize, beans, potatoes, other × 8 stages), escalation-only severity modifiers, `CropRiskAssessment` contract, demo CLI ([`scripts/check_crop_risk.py`](scripts/check_crop_risk.py))
 - **Phase 5 in progress** — catalog-bound Action Planner: 24 curated practices in `actions.yaml` (EN + Swahili titles), deterministic urgency/cost ranking, invented-action-ID blocking, `ActionPlan` contract
-- **76 automated tests passing**, ruff lint + format clean, scheduled CI
+- **Phase 6 in progress** — Farmer Communication core: reviewed EN/Swahili phrasebook, rule-based `FarmerMessage` (≤120 words enforced by the contract), numeric-grounding answer key for later LLM validation, zero-AWS fallback path
+- **83 automated tests passing**, ruff lint + format clean, scheduled CI
 
 ## 🚀 Quickstart (PowerShell)
 
