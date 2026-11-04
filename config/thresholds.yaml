@@ -1,0 +1,45 @@
+# ShambaShield AI — hazard thresholds
+#
+# These are ENGINEERING DEFAULTS for the hackathon demo. They follow general
+# agronomic reasoning (water deficit vs reference evapotranspiration, heat
+# thresholds during sensitive stages) but are NOT universal scientific
+# constants. Before any real-world pilot they must be reviewed with a qualified
+# agronomist and local extension officers.
+#
+# Never present these thresholds as validated science in the UI or article.
+
+version: "0.1.0"
+note: "Initial engineering defaults; pending agronomist review."
+
+drought:
+  # 7-day water balance: sum(rain) - et0_fraction * sum(ET0)
+  window_days: 7
+  et0_fraction: 0.8
+  deficit_moderate_mm: -25.0
+  deficit_high_mm: -45.0
+  # Consecutive days with less than dry_day_mm of rain
+  dry_day_mm: 1.0
+  dry_days_moderate: 5
+  dry_days_high: 7
+
+excess_rain:
+  window_days: 3
+  total_moderate_mm: 60.0
+  total_high_mm: 100.0
+  day_moderate_mm: 40.0
+  day_high_mm: 70.0
+
+heat:
+  tmax_moderate_c: 35.0
+  tmax_high_c: 38.0
+  days_moderate: 2
+  days_high: 3
+
+wind:
+  speed_moderate_kph: 30.0
+  speed_high_kph: 45.0
+  days_moderate: 2
+
+data_gap:
+  # Below this number of forecast days we refuse to report "low" risk.
+  min_days: 5

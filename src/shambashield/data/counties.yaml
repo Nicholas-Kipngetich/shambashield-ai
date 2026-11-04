@@ -1,0 +1,148 @@
+# Kenya's 47 counties with approximate centroids.
+#
+# Coordinates are approximations for county-level forecasting. When the farmer
+# provides a location label we try Open-Meteo geocoding first and fall back to
+# these centroids. For a hackathon demo this granularity is deliberate and is
+# displayed in the UI as "approximate".
+counties:
+  - name: Baringo
+    latitude: 0.4666
+    longitude: 35.9563
+  - name: Bomet
+    latitude: -0.7871
+    longitude: 35.3403
+  - name: Bungoma
+    latitude: 0.5687
+    longitude: 34.5583
+  - name: Busia
+    latitude: 0.4610
+    longitude: 34.1112
+  - name: Elgeyo-Marakwet
+    latitude: 0.8970
+    longitude: 35.5222
+  - name: Embu
+    latitude: -0.5333
+    longitude: 37.4500
+  - name: Garissa
+    latitude: -0.4533
+    longitude: 39.6461
+  - name: Homa Bay
+    latitude: -0.5277
+    longitude: 34.4571
+  - name: Isiolo
+    latitude: 0.3519
+    longitude: 37.5840
+  - name: Kajiado
+    latitude: -1.8542
+    longitude: 36.7815
+  - name: Kakamega
+    latitude: 0.2841
+    longitude: 34.7519
+  - name: Kericho
+    latitude: -0.3670
+    longitude: 35.2837
+  - name: Kiambu
+    latitude: -1.1714
+    longitude: 36.8355
+  - name: Kilifi
+    latitude: -3.5223
+    longitude: 39.6902
+  - name: Kirinyaga
+    latitude: -0.5022
+    longitude: 37.3099
+  - name: Kisii
+    latitude: -0.6836
+    longitude: 34.7680
+  - name: Kisumu
+    latitude: -0.0917
+    longitude: 34.7680
+  - name: Kitui
+    latitude: -1.3661
+    longitude: 38.0104
+  - name: Kwale
+    latitude: -4.1783
+    longitude: 39.4572
+  - name: Laikipia
+    latitude: 0.0166
+    longitude: 37.0679
+  - name: Lamu
+    latitude: -2.2697
+    longitude: 40.9020
+  - name: Machakos
+    latitude: -1.5167
+    longitude: 37.2667
+  - name: Makueni
+    latitude: -1.7237
+    longitude: 37.6600
+  - name: Mandera
+    latitude: 3.9366
+    longitude: 41.8569
+  - name: Marsabit
+    latitude: 2.3345
+    longitude: 37.9903
+  - name: Meru
+    latitude: 0.0469
+    longitude: 37.6479
+  - name: Migori
+    latitude: -1.0639
+    longitude: 34.4690
+  - name: Mombasa
+    latitude: -4.0435
+    longitude: 39.6682
+  - name: Murang'a
+    latitude: -0.7169
+    longitude: 37.1502
+  - name: Nairobi
+    latitude: -1.2864
+    longitude: 36.8172
+  - name: Nakuru
+    latitude: -0.3031
+    longitude: 36.0800
+  - name: Nandi
+    latitude: 0.1034
+    longitude: 35.1000
+  - name: Narok
+    latitude: -1.0860
+    longitude: 35.8700
+  - name: Nyamira
+    latitude: -0.5634
+    longitude: 34.8999
+  - name: Nyandarua
+    latitude: -0.1722
+    longitude: 36.4317
+  - name: Nyeri
+    latitude: -0.4201
+    longitude: 36.9478
+  - name: Samburu
+    latitude: 1.2998
+    longitude: 37.0065
+  - name: Siaya
+    latitude: 0.0606
+    longitude: 34.2883
+  - name: Taita-Taveta
+    latitude: -3.4667
+    longitude: 38.4444
+  - name: Tana River
+    latitude: -0.8956
+    longitude: 39.6622
+  - name: Tharaka-Nithi
+    latitude: -0.2986
+    longitude: 37.8311
+  - name: Trans Nzoia
+    latitude: 1.0153
+    longitude: 34.9500
+  - name: Turkana
+    latitude: 3.0560
+    longitude: 34.0000
+  - name: Uasin Gishu
+    latitude: 0.5203
+    longitude: 35.2697
+  - name: Vihiga
+    latitude: 0.0273
+    longitude: 34.7166
+  - name: Wajir
+    latitude: 1.7471
+    longitude: 40.0573
+  - name: West Pokot
+    latitude: 1.5847
+    longitude: 35.1000

@@ -51,7 +51,8 @@ Currently under development as part of the AWS Building AI Agents with Strands S
 
 - **Phase 1 complete** — architecture, problem definition, requirements ([docs/PHASE1_ARCHITECTURE.md](docs/PHASE1_ARCHITECTURE.md))
 - **Phase 2 in progress** — Python environment, Strands SDK setup, Bedrock diagnostics ([docs/PHASE2_SETUP.md](docs/PHASE2_SETUP.md))
-- **13 offline tests passing**, ruff lint + format clean, scheduled CI
+- **Phase 3 in progress** — Open-Meteo integration live: 7-day normalised forecast, 47-county gazetteer, geocoding fallback, deterministic hazard rules (drought / excess rain / heat / wind / data gaps), labelled demo mode
+- **45 automated tests passing**, ruff lint + format clean, scheduled CI
 
 ## 🚀 Quickstart (PowerShell)
 
@@ -65,6 +66,7 @@ Copy-Item .env.example .env
 python scripts/check_bedrock.py --identity
 python scripts/check_bedrock.py --list
 python scripts/check_bedrock.py --smoke
+python scripts/check_forecast.py --county Machakos   # live weather, no AWS needed
 python -m pytest
 python -m ruff check .
 ```
