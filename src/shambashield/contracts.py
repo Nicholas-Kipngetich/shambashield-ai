@@ -170,3 +170,20 @@ class FarmerMessage(BaseModel):
         if len(words) > 120:
             raise ValueError(f"body must be at most 120 words, got {len(words)}")
         return value
+
+
+class FinalReport(BaseModel):
+    """Everything produced for one farmer request, in one validated packet."""
+
+    assessment_id: str
+    generated_at: datetime
+    farmer: FarmerProfile
+    weather: WeatherSnapshot
+    weather_findings: WeatherFindings
+    crop_risk: CropRiskAssessment
+    action_plan: ActionPlan
+    farmer_message: FarmerMessage
+    risk_level: RiskLevel
+    risk_rationale: list[str]
+    degraded_mode: bool
+    disclaimer: str
