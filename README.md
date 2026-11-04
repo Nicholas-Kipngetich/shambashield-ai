@@ -52,7 +52,8 @@ Currently under development as part of the AWS Building AI Agents with Strands S
 - **Phase 1 complete** — architecture, problem definition, requirements ([docs/PHASE1_ARCHITECTURE.md](docs/PHASE1_ARCHITECTURE.md))
 - **Phase 2 in progress** — Python environment, Strands SDK setup, Bedrock diagnostics ([docs/PHASE2_SETUP.md](docs/PHASE2_SETUP.md))
 - **Phase 3 in progress** — Open-Meteo integration live: 7-day normalised forecast, 47-county gazetteer, geocoding fallback, deterministic hazard rules (drought / excess rain / heat / wind / data gaps), labelled demo mode
-- **45 automated tests passing**, ruff lint + format clean, scheduled CI
+- **Phase 4 in progress** — deterministic Crop Risk engine: curated crop/stage sensitivity table (maize, beans, potatoes, other × 8 stages), escalation-only severity modifiers, `CropRiskAssessment` contract, demo CLI ([`scripts/check_crop_risk.py`](scripts/check_crop_risk.py))
+- **59 automated tests passing**, ruff lint + format clean, scheduled CI
 
 ## 🚀 Quickstart (PowerShell)
 
@@ -67,6 +68,7 @@ python scripts/check_bedrock.py --identity
 python scripts/check_bedrock.py --list
 python scripts/check_bedrock.py --smoke
 python scripts/check_forecast.py --county Machakos   # live weather, no AWS needed
+python scripts/check_crop_risk.py --demo machakos_drought --crop maize --stage flowering
 python -m pytest
 python -m ruff check .
 ```

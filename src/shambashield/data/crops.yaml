@@ -1,0 +1,85 @@
+# ShambaShield AI — crop/stage sensitivity profile
+#
+# ENGINEERING DEFAULTS for the hackathon demo. Inspired by general agronomic
+# reasoning (e.g. maize at flowering is highly drought-sensitive) but NOT
+# validated science. Needs review by a qualified agronomist before real use.
+#
+# Rules encoded by src/shambashield/tools/crop_risk.py:
+#   - sensitivity "high" ESCALATES a detected weather hazard by one level
+#     (low -> moderate, moderate -> high)
+#   - "moderate" / "low" sensitivity never changes the raw weather severity:
+#     the engine may escalate, never de-escalate below the measured hazard.
+#   - "impacts" texts are deterministic explanations without numbers, so the
+#     risk tier always comes from measured data, never from wording.
+
+version: "0.1.0"
+note: "Initial engineering defaults; pending agronomist review."
+
+crops:
+  maize:
+    label: "Maize"
+    stages:
+      land_preparation: { drought: moderate, excess_rain: moderate, heat: low, wind: low }
+      planting:         { drought: high,     excess_rain: moderate, heat: low, wind: low }
+      emergence:        { drought: high,     excess_rain: moderate, heat: moderate, wind: low }
+      vegetative:       { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      flowering:        { drought: high,     excess_rain: high,     heat: high,     wind: moderate }
+      grain_filling:    { drought: high,     excess_rain: moderate, heat: high,     wind: moderate }
+      maturity:         { drought: low,      excess_rain: high,     heat: moderate, wind: moderate }
+      harvest:          { drought: low,      excess_rain: high,     heat: moderate, wind: moderate }
+    impacts:
+      drought: "Maize needs water at this stage; a deficit now reduces grain set and cob fill."
+      excess_rain: "Waterlogged maize fields turn leaves yellow and can rot the roots."
+      heat: "High heat at this stage stresses maize and can lower pollination success."
+      wind: "Strong winds can flatten tall maize, especially before harvest."
+
+  beans:
+    label: "Beans"
+    stages:
+      land_preparation: { drought: moderate, excess_rain: moderate, heat: low, wind: low }
+      planting:         { drought: high,     excess_rain: moderate, heat: low, wind: low }
+      emergence:        { drought: high,     excess_rain: moderate, heat: moderate, wind: low }
+      vegetative:       { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      flowering:        { drought: high,     excess_rain: high,     heat: high,     wind: moderate }
+      grain_filling:    { drought: high,     excess_rain: moderate, heat: high,     wind: low }
+      maturity:         { drought: low,      excess_rain: high,     heat: moderate, wind: moderate }
+      harvest:          { drought: low,      excess_rain: high,     heat: low,      wind: moderate }
+    impacts:
+      drought: "Beans are shallow-rooted; a dry spell now causes flowers and pods to drop."
+      excess_rain: "Beans tolerate waterlogging poorly; wet soil causes root rot and yellowing."
+      heat: "Hot days make beans drop flowers instead of setting pods."
+      wind: "Strong winds can lodge bean plants and scatter drying pods."
+
+  potatoes:
+    label: "Irish potatoes"
+    stages:
+      land_preparation: { drought: moderate, excess_rain: moderate, heat: low, wind: low }
+      planting:         { drought: moderate, excess_rain: high,     heat: low, wind: low }
+      emergence:        { drought: high,     excess_rain: high,     heat: moderate, wind: low }
+      vegetative:       { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      flowering:        { drought: high,     excess_rain: high,     heat: high,     wind: moderate }
+      grain_filling:    { drought: high,     excess_rain: high,     heat: high,     wind: moderate }
+      maturity:         { drought: low,      excess_rain: high,     heat: moderate, wind: moderate }
+      harvest:          { drought: low,      excess_rain: high,     heat: low,      wind: moderate }
+    impacts:
+      drought: "Potatoes form tubers only with steady moisture; a deficit now shrinks yields."
+      excess_rain: "Wet soil makes potato tubers rot before they can be lifted."
+      heat: "Warm nights make potatoes grow leaves instead of tubers."
+      wind: "Strong winds flatten potato canopies before the tubers are mature."
+
+  other:
+    label: "Other crop"
+    stages:
+      land_preparation: { drought: moderate, excess_rain: moderate, heat: low, wind: low }
+      planting:         { drought: moderate, excess_rain: moderate, heat: low, wind: low }
+      emergence:        { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      vegetative:       { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      flowering:        { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      grain_filling:    { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      maturity:         { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+      harvest:          { drought: moderate, excess_rain: moderate, heat: moderate, wind: low }
+    impacts:
+      drought: "A dry spell now can slow growth and reduce the final harvest."
+      excess_rain: "Saturated soil can suffocate roots and wash away nutrients."
+      heat: "High heat stresses most crops during their sensitive stages."
+      wind: "Strong winds can damage plants and interfere with spraying."

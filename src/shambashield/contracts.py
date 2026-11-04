@@ -113,3 +113,19 @@ class WeatherFindings(BaseModel):
         order: dict[str, int] = {"low": 0, "moderate": 1, "high": 2}
         ranked = sorted(self.hazards, key=lambda h: order[h.severity], reverse=True)
         return ranked[0].severity if ranked else None
+
+
+class CropRiskAssessment(BaseModel):
+    """Deterministic crop/stage view over the weather findings.
+
+    `drivers` carry the severity trail (raw -> final) so every escalation is
+    traceable; `impact_explanation` contains no numbers.
+    """
+
+    crop: Crop
+    stage: Stage
+    risk_level: RiskLevel
+    drivers: list[str]
+    impact_explanation: str
+    uncertainty: list[str]
+    stage_sensitivity: str
